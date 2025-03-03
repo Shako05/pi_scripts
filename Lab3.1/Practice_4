@@ -1,0 +1,29 @@
+import time
+import wiringpi
+import sys
+
+def blink(_pin1):
+    for _pin in _pin1:
+        wiringpi.digitalWrite(_pin, 1) 
+        time.sleep(0.5)
+        wiringpi.digitalWrite(_pin, 0) 
+    
+    for _pin in reversed(_pin1):
+        wiringpi.digitalWrite(_pin, 1) 
+        time.sleep(0.5)
+        wiringpi.digitalWrite(_pin, 0) 
+
+# SETUP
+print("Start")
+pins = [2,3,4,7]
+
+wiringpi.wiringPiSetup()
+for pin in pins:
+    wiringpi.pinMode(pin, 1)  
+
+blink_bool = True 
+while blink_bool:
+    blink(pins)
+
+# cleanup
+print("Done")

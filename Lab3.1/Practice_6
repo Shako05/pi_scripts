@@ -1,0 +1,28 @@
+import time
+import wiringpi
+import sys
+
+def short_blink(_pin1):
+    wiringpi.digitalWrite(_pin1, 1) 
+    time.sleep(0.5)
+    wiringpi.digitalWrite(_pin1, 0) 
+    time.sleep(0.5)
+
+def long_blink(_pin1):
+    wiringpi.digitalWrite(_pin1, 1) 
+    time.sleep(1.5)
+    wiringpi.digitalWrite(_pin1, 0) 
+    time.sleep(1.5)
+
+# SETUP
+print("Start")
+wiringpi.wiringPiSetup()
+
+wiringpi.pinMode(2,1)  
+
+while True :
+    short_blink(2)
+    long_blink(2)
+    short_blink(2)
+# cleanup
+print("Done")
